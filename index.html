@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>آزمون خودارزیابی رفتارهای سمی</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <header>
+
+        <h1>آزمون خودارزیابی رفتارهای سمی</h1>
+<h2> تهیه شده توسط علی کرمانی </h2>
+        <p>
+            لطفاً هر عبارت را بر اساس میزان موافقت خود انتخاب کنید.
+        </p>
+
+    </header>
+
+
+    <form id="testForm">
+
+        <div id="questions"></div>
+
+        <div class="submit-box">
+
+            <button type="submit" id="submitBtn">
+
+                محاسبه نتیجه
+
+            </button>
+
+        </div>
+
+    </form>
+
+
+    <section id="result" class="hidden">
+
+        <h2>نتیجه آزمون</h2>
+
+        <div class="score-card">
+
+            <div class="score-row">
+
+                <span>نمره کل</span>
+
+                <span id="totalScore"></span>
+
+            </div>
+
+            <hr>
+
+            <div class="score-row">
+
+                <span>مسئولیت گریزی</span>
+
+                <span id="score1"></span>
+
+            </div>
+
+            <div class="score-row">
+
+                <span>همدلی پایین</span>
+
+                <span id="score2"></span>
+
+            </div>
+
+            <div class="score-row">
+
+                <span>کنترل‌گری</span>
+
+                <span id="score3"></span>
+
+            </div>
+
+            <div class="score-row">
+
+                <span>دستکاری هیجانی</span>
+
+                <span id="score4"></span>
+
+            </div>
+
+            <div class="score-row">
+
+                <span>انتقاد ناپذیری</span>
+
+                <span id="score5"></span>
+
+            </div>
+
+            <div class="score-row">
+
+                <span> مرز شکنی </span>
+
+                <span id="score6"></span>
+
+            </div>
+		<div class="score-row">
+  			  <span>تفسیر نتیجه</span>
+		</div>
+
+<div id="interpretation" class="interpretation"></div>
+
+        </div>
+
+    </section>
+
+</div>
+
+<script src="questions.js"></script>
+
+<script src="app.js"></script>
+
+</body>
+
+</html>
