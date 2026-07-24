@@ -137,4 +137,34 @@ button{
     width:100%;
 }
 
+.user-info{
+
+    margin:25px 0;
+
+}
+
+.user-info label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    font-weight:bold;
+
+}
+
+.user-info input{
+
+    width:100%;
+
+    padding:12px;
+
+    border:1px solid #ccc;
+
+    border-radius:6px;
+
+    font-size:16px;
+
+}
+    
 }
