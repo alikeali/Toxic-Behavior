@@ -155,27 +155,16 @@ params.append("scale4", data.scale4);
 params.append("scale5", data.scale5);
 params.append("scale6", data.scale6);
 
-fetch(SCRIPT_URL, {
-    method: "POST",
-    body: params
-})
-.then(response => response.text())
-.then(response => {
-    console.log("Saved:", response);
-})
-.catch(error => {
-    console.error("Error:", error);
-});
+document.getElementById("f_name").value = data.name;
+document.getElementById("f_total").value = data.total;
 
+document.getElementById("f_scale1").value = data.scale1;
+document.getElementById("f_scale2").value = data.scale2;
+document.getElementById("f_scale3").value = data.scale3;
+document.getElementById("f_scale4").value = data.scale4;
+document.getElementById("f_scale5").value = data.scale5;
+document.getElementById("f_scale6").value = data.scale6;
 
-
-    form.style.display = "none";
-
-    result.classList.remove("hidden");
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
+document.getElementById("saveForm").submit();
 
 });
