@@ -144,29 +144,28 @@ const data = {
 };
 
 
-fetch(SCRIPT_URL,{
+const params = new URLSearchParams();
 
-    method:"POST",
+params.append("name", data.name);
+params.append("total", data.total);
+params.append("scale1", data.scale1);
+params.append("scale2", data.scale2);
+params.append("scale3", data.scale3);
+params.append("scale4", data.scale4);
+params.append("scale5", data.scale5);
+params.append("scale6", data.scale6);
 
-    body:JSON.stringify(data),
-
-    headers:{
-        "Content-Type":"application/json"
-    }
-
+fetch(SCRIPT_URL, {
+    method: "POST",
+    body: params
 })
-.then(r=>r.json())
-.then(data=>{
-
-    console.log("Saved",data);
-
+.then(response => response.text())
+.then(response => {
+    console.log("Saved:", response);
 })
-.catch(err=>{
-
-    console.error(err);
-
+.catch(error => {
+    console.error("Error:", error);
 });
-
 
 
 
