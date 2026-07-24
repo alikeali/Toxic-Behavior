@@ -1,6 +1,6 @@
 const questionContainer = document.getElementById("questions");
 const form = document.getElementById("testForm");
-
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxG-IHMldGtfdFvIdhwolg4sWkE_Oxi4gdScCjgjW0i1_dS85CaIpk3Qw5sdOexEmYO/exec";
 const result = document.getElementById("result");
 
 const totalScore = document.getElementById("totalScore");
@@ -117,7 +117,55 @@ else {
         "<b>رفتارهای سمی بالا</b><br>پاسخ‌ها نشان می‌دهد که برخی الگوهای ناسالم ممکن است به‌صورت مکرر در روابط شما ظاهر شوند. این نتیجه به‌تنهایی یک تشخیص روان‌شناختی نیست، اما می‌تواند نشانه‌ای باشد که بررسی عمیق‌تر و کار روی مهارت‌های ارتباطی و تنظیم هیجان برای شما سودمند خواهد بود.";
 }
 
+const now = new Date();
 
+const data = {
+
+    name: document.getElementById("fullName").value,
+
+    date: now.toLocaleDateString("fa-IR"),
+
+    time: now.toLocaleTimeString("fa-IR"),
+
+    total: total,
+
+    scale1: subScale[0],
+
+    scale2: subScale[1],
+
+    scale3: subScale[2],
+
+    scale4: subScale[3],
+
+    scale5: subScale[4],
+
+    scale6: subScale[5]
+
+};
+
+
+fetch(SCRIPT_URL,{
+
+    method:"POST",
+
+    body:JSON.stringify(data),
+
+    headers:{
+        "Content-Type":"application/json"
+    }
+
+})
+.then(r=>r.json())
+.then(data=>{
+
+    console.log("Saved",data);
+
+})
+.catch(err=>{
+
+    console.error(err);
+
+});
 
 
 
