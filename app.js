@@ -1,6 +1,6 @@
 const questionContainer = document.getElementById("questions");
 const form = document.getElementById("testForm");
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxG-IHMldGtfdFvIdhwolg4sWkE_Oxi4gdScCjgjW0i1_dS85CaIpk3Qw5sdOexEmYO/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwHcENx5RK2I-Sr1oIrJrvRG7fWYFbBvvAPmQKxz6QJwCn9QbwmM1SnSpL_x0zwghOI6w/exec";
 const result = document.getElementById("result");
 
 const totalScore = document.getElementById("totalScore");
