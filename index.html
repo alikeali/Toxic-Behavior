@@ -3,165 +3,465 @@
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-    <title>آزمون خودارزیابی رفتارهای سمی</title>
+<title>
+آزمون خودارزیابی رفتارهای سمی
+</title>
 
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
 
-<div class="container">
 
-    <header>
+<!-- ===========================
+صفحه ورود
+============================ -->
 
-        <h1>آزمون خودارزیابی رفتارهای سمی</h1>
-<h2> تهیه شده توسط علی کرمانی </h2>
-        <p>
-            لطفاً هر عبارت را بر اساس میزان موافقت خود انتخاب کنید.
-        </p>
+<div id="startPage" class="page">
 
-    </header>
+<div class="card">
 
-<div class="user-info">
+<h1>
 
-    <label for="fullName">
+آزمون خودارزیابی رفتارهای سمی
 
-        نام و نام خانوادگی
+</h1>
 
-    </label>
+<p class="intro">
 
-    <input
+این آزمون صرفاً برای خودارزیابی طراحی شده است و نتیجه آن تشخیص
+روان‌شناختی محسوب نمی‌شود.
 
-        type="text"
+لطفاً با صداقت و بر اساس رفتار معمول خود به همه سؤالات پاسخ دهید.
 
-        id="fullName"
+مدت زمان انجام آزمون حدود ۳ تا ۵ دقیقه است.
 
-        required
-
-        placeholder="نام و نام خانوادگی خود را وارد کنید">
-
-</div>
-	
-    <form id="testForm">
-
-        <div id="questions"></div>
-
-        <div class="submit-box">
-
-            <button type="submit" id="submitBtn">
-
-                محاسبه نتیجه
-
-            </button>
-
-        </div>
-
-    </form>
+</p>
 
 
-    <section id="result" class="hidden">
+<label>
 
-        <h2>نتیجه آزمون</h2>
+نام و نام خانوادگی
 
-        <div class="score-card">
+</label>
 
-            <div class="score-row">
+<input
 
-                <span>نمره کل</span>
+id="fullName"
 
-                <span id="totalScore"></span>
+type="text"
 
-            </div>
+placeholder="نام خود را وارد کنید"
 
-            <hr>
+autocomplete="off"
 
-            <div class="score-row">
+>
 
-                <span>مسئولیت گریزی</span>
 
-                <span id="score1"></span>
+<button id="startBtn">
 
-            </div>
+شروع آزمون
 
-            <div class="score-row">
-
-                <span>همدلی پایین</span>
-
-                <span id="score2"></span>
-
-            </div>
-
-            <div class="score-row">
-
-                <span>کنترل‌گری</span>
-
-                <span id="score3"></span>
-
-            </div>
-
-            <div class="score-row">
-
-                <span>دستکاری هیجانی</span>
-
-                <span id="score4"></span>
-
-            </div>
-
-            <div class="score-row">
-
-                <span>انتقاد ناپذیری</span>
-
-                <span id="score5"></span>
-
-            </div>
-
-            <div class="score-row">
-
-                <span> مرز شکنی </span>
-
-                <span id="score6"></span>
-
-            </div>
-		<div class="score-row">
-  			  <span>تفسیر نتیجه</span>
-		</div>
-
-<div id="interpretation" class="interpretation"></div>
-
-        </div>
-
-    </section>
+</button>
 
 </div>
+
+</div>
+
+
+
+<!-- ===========================
+صفحه آزمون
+============================ -->
+
+<div
+
+id="examPage"
+
+class="page"
+
+style="display:none;"
+
+>
+
+<div class="card">
+
+<h2>
+
+آزمون خودارزیابی رفتارهای سمی
+
+</h2>
+
+<p id="userName"></p>
+
+<form id="testForm">
+
+<div id="questions">
+
+</div>
+
+<div class="submitArea">
+
+<button type="submit">
+
+محاسبه نتیجه
+
+</button>
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+
+
+<!-- ===========================
+صفحه نتیجه
+============================ -->
+
+<div
+
+id="resultPage"
+
+class="page"
+
+style="display:none;"
+
+>
+
+<div class="card">
+
+<h2>
+
+نتیجه آزمون
+
+</h2>
+
+<p>
+
+<strong>
+
+نام آزمون‌دهنده:
+
+</strong>
+
+<span id="resultName">
+
+</span>
+
+</p>
+
+<p>
+
+<strong>
+
+تاریخ انجام آزمون:
+
+</strong>
+
+<span id="resultDate">
+
+</span>
+
+</p>
+
+<hr>
+
+	<p>
+
+<strong>
+
+نمره کل:
+
+</strong>
+
+<span id="totalScore">
+
+0
+
+</span>
+
+از 120
+
+</p>
+
+<hr>
+
+<h3>
+
+خرده‌مقیاس‌ها
+
+</h3>
+
+<table class="resultTable">
+
+<tr>
+
+<td>
+
+الگوی رفتاری ناسالم ناشی از کمبود همدلی
+
+</td>
+
+<td id="score1">
+
+0
+
+</td>
+
+<td>
+
+از 20
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+الگوی رفتاری ناسالم ناشی از کمبود مسئولیت‌پذیری
+
+</td>
+
+<td id="score2">
+
+0
+
+</td>
+
+<td>
+
+از 20
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+الگوی رفتاری ناسالم ناشی از خودمحوری
+
+</td>
+
+<td id="score3">
+
+0
+
+</td>
+
+<td>
+
+از 20
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+الگوی رفتاری ناسالم ناشی از کنترل‌گری
+
+</td>
+
+<td id="score4">
+
+0
+
+</td>
+
+<td>
+
+از 20
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+الگوی رفتاری ناسالم ناشی از پرخاشگری
+
+</td>
+
+<td id="score5">
+
+0
+
+</td>
+
+<td>
+
+از 20
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+الگوی رفتاری ناسالم ناشی از صداقت پایین
+
+</td>
+
+<td id="score6">
+
+0
+
+</td>
+
+<td>
+
+از 20
+
+</td>
+
+</tr>
+
+</table>
+
+<hr>
+
+<h3>
+
+تفسیر نتیجه
+
+</h3>
+
+<div id="interpretation">
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- ===========================
+فرم مخفی ذخیره اطلاعات
+=========================== -->
+
+<iframe
+
+name="hidden_iframe"
+
+id="hidden_iframe"
+
+style="display:none;">
+
+</iframe>
+
+
+<form
+
+id="saveForm"
+
+method="POST"
+
+target="hidden_iframe"
+
+action="https://script.google.com/macros/s/AKfycbwHcENx5RK2I-Sr1oIrJrvRG7fWYFbBvvAPmQKxz6QJwCn9QbwmM1SnSpL_x0zwghOI6w/exec"
+
+style="display:none;">
+
+<input
+
+type="hidden"
+
+name="name"
+
+id="f_name">
+
+<input
+
+type="hidden"
+
+name="total"
+
+id="f_total">
+
+<input
+
+type="hidden"
+
+name="scale1"
+
+id="f_scale1">
+
+<input
+
+type="hidden"
+
+name="scale2"
+
+id="f_scale2">
+
+<input
+
+type="hidden"
+
+name="scale3"
+
+id="f_scale3">
+
+<input
+
+type="hidden"
+
+name="scale4"
+
+id="f_scale4">
+
+	<input
+type="hidden"
+name="scale5"
+id="f_scale5">
+
+<input
+type="hidden"
+name="scale6"
+id="f_scale6">
+
+<input
+type="hidden"
+name="date"
+id="f_date">
+
+<input
+type="hidden"
+name="time"
+id="f_time">
+
+</form>
+
+
+<!-- ===========================
+بارگذاری فایل‌های جاوااسکریپت
+=========================== -->
 
 <script src="questions.js"></script>
 
 <script src="app.js"></script>
 
-<iframe name="hidden_iframe" style="display:none;"></iframe>
-
-<form id="saveForm"
-      action="https://script.google.com/macros/s/AKfycbwHcENx5RK2I-Sr1oIrJrvRG7fWYFbBvvAPmQKxz6QJwCn9QbwmM1SnSpL_x0zwghOI6w/exec"
-      method="POST"
-      target="hidden_iframe"
-      style="display:none;">
-
-    <input name="name" id="f_name">
-    <input name="total" id="f_total">
-    <input name="scale1" id="f_scale1">
-    <input name="scale2" id="f_scale2">
-    <input name="scale3" id="f_scale3">
-    <input name="scale4" id="f_scale4">
-    <input name="scale5" id="f_scale5">
-    <input name="scale6" id="f_scale6">
-
-</form>
-	
 </body>
 
 </html>
