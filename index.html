@@ -133,235 +133,105 @@ style="display:none;"
 صفحه نتیجه
 ============================ -->
 
-<div
+<!-- ====================== -->
+<!-- صفحه نتیجه -->
+<!-- ====================== -->
 
-id="resultPage"
+<section id="resultPage" class="card hidden">
 
-class="page"
+    <h2>نتیجه آزمون</h2>
 
-style="display:none;"
+    <div class="infoBox">
 
->
+        <p><strong>نام آزمون‌دهنده:</strong>
+            <span id="resultName"></span>
+        </p>
 
-<div class="card">
+        <p><strong>تاریخ و ساعت:</strong>
+            <span id="resultDate"></span>
+        </p>
 
-<h2>
+    </div>
 
-نتیجه آزمون
+    <div class="totalCard">
 
-</h2>
+        <h3>نمره کل</h3>
 
-<p>
+        <div id="totalScore" class="totalNumber">
+            0
+        </div>
 
-<strong>
+        <div class="totalRange">
+            از 120
+        </div>
 
-نام آزمون‌دهنده:
+        <div id="overallLevel" class="overallLevel">
+        </div>
 
-</strong>
+    </div>
 
-<span id="resultName">
+    <div id="interpretation" class="interpretationBox">
+    </div>
 
-</span>
+    <hr>
 
-</p>
+    <h3>
+        نتایج خرده‌مقیاس‌ها
+    </h3>
 
-<p>
+    <div id="subscaleResults">
 
-<strong>
+    </div>
 
-تاریخ انجام آزمون:
+    <div class="footerNote">
 
-</strong>
+        این آزمون یک ابزار خودارزیابی است و
+        جایگزین ارزیابی تخصصی روان‌شناختی
+        توسط روان‌شناس نیست.
 
-<span id="resultDate">
+    </div>
 
-</span>
-
-</p>
-
-<hr>
-
-	<p>
-
-<strong>
-
-نمره کل:
-
-</strong>
-
-<span id="totalScore">
-
-0
-
-</span>
-
-از 120
-
-</p>
-
-<hr>
-
-<h3>
-
-خرده‌مقیاس‌ها
-
-</h3>
-
-<table class="resultTable">
-
-<tr>
-<td>مسئولیت‌گریزی</td>
-<td id="score1">0</td>
-<td>از 20</td>
-</tr>
-
-<tr>
-<td>کمبود همدلی</td>
-<td id="score2">0</td>
-<td>از 20</td>
-</tr>
-
-<tr>
-<td>کنترل‌گری</td>
-<td id="score3">0</td>
-<td>از 20</td>
-</tr>
-
-<tr>
-<td>دستکاری هیجانی</td>
-<td id="score4">0</td>
-<td>از 20</td>
-</tr>
-
-<tr>
-<td>انتقادناپذیری</td>
-<td id="score5">0</td>
-<td>از 20</td>
-</tr>
-
-<tr>
-<td>مرزشکنی</td>
-<td id="score6">0</td>
-<td>از 20</td>
-</tr>
-
-</table>
-
-<hr>
-
-<h3>
-
-تفسیر نتیجه
-
-</h3>
-
-<div id="interpretation">
-
-</div>
-
-</div>
-
-</div>
+</section>
 
 
-
-<!-- ===========================
-فرم مخفی ذخیره اطلاعات
-=========================== -->
+<!-- ====================== -->
+<!-- فرم مخفی ارسال به Google Apps Script -->
+<!-- ====================== -->
 
 <iframe
-
-name="hidden_iframe"
-
-id="hidden_iframe"
-
-style="display:none;">
-
+    name="hiddenFrame"
+    id="hiddenFrame"
+    style="display:none;">
 </iframe>
 
-
 <form
+    id="saveForm"
+    method="POST"
+    target="hiddenFrame"
+    action="https://script.google.com/macros/s/AKfycbwHcENx5RK2I-Sr1oIrJrvRG7fWYFbBvvAPmQKxz6QJwCn9QbwmM1SnSpL_x0zwghOI6w/exec"
+    style="display:none;">
 
-id="saveForm"
+    <input type="hidden" name="name" id="f_name">
 
-method="POST"
+    <input type="hidden" name="date" id="f_date">
 
-target="hidden_iframe"
+    <input type="hidden" name="time" id="f_time">
 
-action="https://script.google.com/macros/s/AKfycbwHcENx5RK2I-Sr1oIrJrvRG7fWYFbBvvAPmQKxz6QJwCn9QbwmM1SnSpL_x0zwghOI6w/exec"
+    <input type="hidden" name="total" id="f_total">
 
-style="display:none;">
+    <input type="hidden" name="scale1" id="f_scale1">
 
-<input
+    <input type="hidden" name="scale2" id="f_scale2">
 
-type="hidden"
+    <input type="hidden" name="scale3" id="f_scale3">
 
-name="name"
+    <input type="hidden" name="scale4" id="f_scale4">
 
-id="f_name">
+    <input type="hidden" name="scale5" id="f_scale5">
 
-<input
-
-type="hidden"
-
-name="total"
-
-id="f_total">
-
-<input
-
-type="hidden"
-
-name="scale1"
-
-id="f_scale1">
-
-<input
-
-type="hidden"
-
-name="scale2"
-
-id="f_scale2">
-
-<input
-
-type="hidden"
-
-name="scale3"
-
-id="f_scale3">
-
-<input
-
-type="hidden"
-
-name="scale4"
-
-id="f_scale4">
-
-	<input
-type="hidden"
-name="scale5"
-id="f_scale5">
-
-<input
-type="hidden"
-name="scale6"
-id="f_scale6">
-
-<input
-type="hidden"
-name="date"
-id="f_date">
-
-<input
-type="hidden"
-name="time"
-id="f_time">
+    <input type="hidden" name="scale6" id="f_scale6">
 
 </form>
-
 
 <!-- ===========================
 بارگذاری فایل‌های جاوااسکریپت
