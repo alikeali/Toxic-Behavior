@@ -1,61 +1,154 @@
+// ======================================
+// آزمون خودارزیابی رفتارهای سمی
+// نسخه نهایی
+// ======================================
+
+
+// ---------- عناصر صفحه ----------
+
+const startPage = document.getElementById("startPage");
+const examPage = document.getElementById("examPage");
+const resultPage = document.getElementById("resultPage");
+
+const startBtn = document.getElementById("startBtn");
+const fullName = document.getElementById("fullName");
+
+const userName = document.getElementById("userName");
+
 const questionContainer = document.getElementById("questions");
+
 const form = document.getElementById("testForm");
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwHcENx5RK2I-Sr1oIrJrvRG7fWYFbBvvAPmQKxz6QJwCn9QbwmM1SnSpL_x0zwghOI6w/exec";
-const result = document.getElementById("result");
+
+const resultName = document.getElementById("resultName");
+const resultDate = document.getElementById("resultDate");
 
 const totalScore = document.getElementById("totalScore");
 
+const interpretation =
+document.getElementById("interpretation");
+
+
 const scores = [
-    document.getElementById("score1"),
-    document.getElementById("score2"),
-    document.getElementById("score3"),
-    document.getElementById("score4"),
-    document.getElementById("score5"),
-    document.getElementById("score6")
+
+document.getElementById("score1"),
+
+document.getElementById("score2"),
+
+document.getElementById("score3"),
+
+document.getElementById("score4"),
+
+document.getElementById("score5"),
+
+document.getElementById("score6")
+
 ];
 
 
-/* ---------- تولید سوالات ---------- */
 
-questions.forEach(q => {
+// ---------- فعال شدن دکمه ----------
 
-    const question = document.createElement("div");
-    question.className = "question";
+fullName.addEventListener("input",()=>{
 
-    const title = document.createElement("h3");
-    title.textContent = `${q.id}. ${q.text}`;
-
-    const options = document.createElement("div");
-    options.className = "options";
-
-    choices.forEach((choice, index) => {
-
-        const label = document.createElement("label");
-
-        const radio = document.createElement("input");
-
-        radio.type = "radio";
-        radio.name = "q" + q.id;
-        radio.value = index + 1;
-        radio.required = true;
-
-        label.appendChild(radio);
-        label.append(" " + choice);
-
-        options.appendChild(label);
-
-    });
-
-    question.appendChild(title);
-    question.appendChild(options);
-
-    questionContainer.appendChild(question);
+startBtn.disabled =
+fullName.value.trim()==="";
 
 });
 
 
 
-/* ---------- محاسبه ---------- */
+// ---------- شروع آزمون ----------
+
+startBtn.addEventListener("click",()=>{
+
+const name = fullName.value.trim();
+
+if(name===""){
+
+alert("نام خود را وارد کنید.");
+
+return;
+
+}
+
+userName.innerHTML =
+"<b>آزمون‌دهنده:</b> "+name;
+
+startPage.style.display="none";
+
+examPage.style.display="block";
+
+examPage.classList.add("fadeIn");
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+});
+
+
+
+// ---------- تولید سوالات ----------
+
+questions.forEach(q=>{
+
+const question =
+document.createElement("div");
+
+question.className="question";
+
+const title =
+document.createElement("h3");
+
+title.textContent=
+q.id+"- "+q.text;
+
+question.appendChild(title);
+
+
+const options =
+document.createElement("div");
+
+options.className="options";
+
+
+choices.forEach((choice,index)=>{
+
+const label=
+document.createElement("label");
+
+const radio=
+document.createElement("input");
+
+radio.type="radio";
+
+radio.name="q"+q.id;
+
+radio.value=index+1;
+
+radio.required=true;
+
+label.appendChild(radio);
+
+label.append(choice);
+
+options.appendChild(label);
+
+});
+
+question.appendChild(options);
+
+questionContainer.appendChild(question);
+
+});
+
+// ======================================
+// محاسبه نمرات
+// ======================================
 
 form.addEventListener("submit", function (e) {
 
@@ -65,7 +158,7 @@ form.addEventListener("submit", function (e) {
 
     let subScale = [0, 0, 0, 0, 0, 0];
 
-
+    // بررسی پاسخ همه سؤالات
     for (const q of questions) {
 
         const selected = document.querySelector(
@@ -73,14 +166,20 @@ form.addEventListener("submit", function (e) {
         );
 
         if (!selected) {
-            alert("لطفاً به تمام سوالات پاسخ دهید.");
+
+            alert("لطفاً به همه سؤالات پاسخ دهید.");
+
             return;
+
         }
 
         let value = parseInt(selected.value);
 
+        // اصلاح سؤال معکوس
         if (q.reverse) {
+
             value = 6 - value;
+
         }
 
         total += value;
@@ -90,81 +189,219 @@ form.addEventListener("submit", function (e) {
     }
 
 
-    totalScore.textContent = total + " از 120";
+    // ======================
+    // نمایش نمرات
+    // ======================
+
+    totalScore.textContent = total;
 
     for (let i = 0; i < 6; i++) {
 
-        scores[i].textContent = subScale[i] + " از 20";
+        scores[i].textContent = subScale[i];
 
     }
 
-const interpretation = document.getElementById("interpretation");
 
-if (total <= 47) {
-    interpretation.innerHTML =
-        "<b>رفتارهای سمی بسیار کم</b><br>پاسخ‌های شما نشان می‌دهد که در بیشتر موقعیت‌ها مسئولیت‌پذیری، همدلی و احترام به دیگران را حفظ می‌کنید. البته هیچ‌کس همیشه بدون رفتار ناسالم نیست و خودآگاهی و بازخورد گرفتن همچنان اهمیت دارد.";
-}
-else if (total <= 71) {
-    interpretation.innerHTML =
-        "<b>رفتارهای سمی خفیف</b><br>برخی الگوهای رفتاری ممکن است گاهی باعث تنش در روابط شوند، اما به نظر می‌رسد این رفتارها فراگیر و پایدار نیستند. توجه به موقعیت‌هایی که این الگوها در آن فعال می‌شوند می‌تواند به بهبود روابط کمک کند.";
-}
-else if (total <= 95) {
-    interpretation.innerHTML =
-        "<b>رفتارهای سمی متوسط</b><br>نتیجه نشان می‌دهد که برخی الگوهای ارتباطی شما ممکن است به‌طور قابل توجهی بر کیفیت روابط اثر بگذارند. شناسایی موقعیت‌های تکرارشونده و تمرین مهارت‌هایی مانند همدلی، پذیرش مسئولیت و مدیریت هیجان می‌تواند مفید باشد.";
-}
-else {
-    interpretation.innerHTML =
-        "<b>رفتارهای سمی بالا</b><br>پاسخ‌ها نشان می‌دهد که برخی الگوهای ناسالم ممکن است به‌صورت مکرر در روابط شما ظاهر شوند. این نتیجه به‌تنهایی یک تشخیص روان‌شناختی نیست، اما می‌تواند نشانه‌ای باشد که بررسی عمیق‌تر و کار روی مهارت‌های ارتباطی و تنظیم هیجان برای شما سودمند خواهد بود.";
-}
+    // ======================
+    // نام و تاریخ
+    // ======================
 
-const now = new Date();
+    const now = new Date();
 
-const data = {
+    const dateString = now.toLocaleDateString("fa-IR");
 
-    name: document.getElementById("fullName").value,
+    const timeString = now.toLocaleTimeString("fa-IR");
 
-    date: now.toLocaleDateString("fa-IR"),
+    resultName.textContent = fullName.value;
 
-    time: now.toLocaleTimeString("fa-IR"),
-
-    total: total,
-
-    scale1: subScale[0],
-
-    scale2: subScale[1],
-
-    scale3: subScale[2],
-
-    scale4: subScale[3],
-
-    scale5: subScale[4],
-
-    scale6: subScale[5]
-
-};
+    resultDate.textContent =
+        dateString + "   ساعت " + timeString;
 
 
-const params = new URLSearchParams();
+    // ======================
+    // تفسیر نتیجه
+    // ======================
 
-params.append("name", data.name);
-params.append("total", data.total);
-params.append("scale1", data.scale1);
-params.append("scale2", data.scale2);
-params.append("scale3", data.scale3);
-params.append("scale4", data.scale4);
-params.append("scale5", data.scale5);
-params.append("scale6", data.scale6);
+    if (total <= 47) {
 
-document.getElementById("f_name").value = data.name;
-document.getElementById("f_total").value = data.total;
+        interpretation.innerHTML =
 
-document.getElementById("f_scale1").value = data.scale1;
-document.getElementById("f_scale2").value = data.scale2;
-document.getElementById("f_scale3").value = data.scale3;
-document.getElementById("f_scale4").value = data.scale4;
-document.getElementById("f_scale5").value = data.scale5;
-document.getElementById("f_scale6").value = data.scale6;
+        "<b>رفتارهای سمی بسیار کم</b><br><br>" +
 
-document.getElementById("saveForm").submit();
+        "نتیجه نشان می‌دهد که در بیشتر موقعیت‌ها " +
+
+        "احتمالاً مسئولیت‌پذیری، احترام به دیگران " +
+
+        "و همدلی را حفظ می‌کنید. " +
+
+        "البته هیچ فردی کاملاً بدون رفتار ناسالم نیست.";
+
+    }
+
+    else if (total <= 71) {
+
+        interpretation.innerHTML =
+
+        "<b>رفتارهای سمی خفیف</b><br><br>" +
+
+        "گاهی برخی الگوهای رفتاری شما ممکن است " +
+
+        "باعث ایجاد تنش در روابط شود، اما این الگوها " +
+
+        "احتمالاً فراگیر و پایدار نیستند.";
+
+    }
+
+    else if (total <= 95) {
+
+        interpretation.innerHTML =
+
+        "<b>رفتارهای سمی متوسط</b><br><br>" +
+
+        "برخی رفتارهای ارتباطی شما می‌تواند " +
+
+        "به طور قابل توجهی بر کیفیت روابط اثر بگذارد. " +
+
+        "خودآگاهی و تمرین مهارت‌های ارتباطی مفید خواهد بود.";
+
+    }
+
+    else {
+
+        interpretation.innerHTML =
+
+        "<b>رفتارهای سمی بالا</b><br><br>" +
+
+        "نتیجه نشان می‌دهد که برخی الگوهای ناسالم " +
+
+        "احتمالاً به صورت مکرر در روابط شما دیده می‌شوند. " +
+
+        "این آزمون تشخیص روان‌شناختی نیست، اما می‌تواند " +
+
+        "زمینه‌ای برای خودشناسی و تغییر باشد.";
+
+    }
+
+                          // ======================
+    // آماده‌سازی داده‌ها
+    // ======================
+
+    const data = {
+
+        name: fullName.value.trim(),
+
+        total: total,
+
+        scale1: subScale[0],
+
+        scale2: subScale[1],
+
+        scale3: subScale[2],
+
+        scale4: subScale[3],
+
+        scale5: subScale[4],
+
+        scale6: subScale[5],
+
+        date: dateString,
+
+        time: timeString
+
+    };
+
+
+    // ======================
+    // تکمیل فرم مخفی
+    // ======================
+
+    document.getElementById("f_name").value = data.name;
+
+    document.getElementById("f_total").value = data.total;
+
+    document.getElementById("f_scale1").value = data.scale1;
+
+    document.getElementById("f_scale2").value = data.scale2;
+
+    document.getElementById("f_scale3").value = data.scale3;
+
+    document.getElementById("f_scale4").value = data.scale4;
+
+    document.getElementById("f_scale5").value = data.scale5;
+
+    document.getElementById("f_scale6").value = data.scale6;
+
+    document.getElementById("f_date").value = data.date;
+
+    document.getElementById("f_time").value = data.time;
+
+
+
+    // ======================
+    // ارسال به Google Sheets
+    // ======================
+
+    setTimeout(function(){
+
+        document.getElementById("saveForm").submit();
+
+    },300);
+
+
+
+    // ======================
+    // نمایش صفحه نتیجه
+    // ======================
+
+    examPage.style.display = "none";
+
+    resultPage.style.display = "block";
+
+    resultPage.classList.add("fadeIn");
+
+
+    window.scrollTo({
+
+        top:0,
+
+        behavior:"smooth"
+
+    });
+
+                          // ======================
+    // جلوگیری از ارسال مجدد
+    // ======================
+
+    const submitButton = form.querySelector("button[type='submit']");
+
+    submitButton.disabled = true;
+
+    submitButton.textContent = "نتیجه محاسبه شد";
 
 });
+
+
+
+// ======================================
+// جلوگیری از ارسال فرم با Enter
+// ======================================
+
+document.addEventListener("keydown", function(e){
+
+    if(e.key==="Enter"){
+
+        if(document.activeElement.tagName!=="TEXTAREA"){
+
+            e.preventDefault();
+
+        }
+
+    }
+
+});
+
+
+
+// ======================================
+// پایان برنامه
+// ======================================
