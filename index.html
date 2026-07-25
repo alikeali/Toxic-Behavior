@@ -133,105 +133,235 @@ style="display:none;"
 صفحه نتیجه
 ============================ -->
 
-<!-- ====================== -->
-<!-- صفحه نتیجه -->
-<!-- ====================== -->
+<div
 
-<section id="resultPage" class="card hidden">
+id="resultPage"
 
-    <h2>نتیجه آزمون</h2>
+class="page"
 
-    <div class="infoBox">
+style="display:none;"
 
-        <p><strong>نام آزمون‌دهنده:</strong>
-            <span id="resultName"></span>
-        </p>
+>
 
-        <p><strong>تاریخ و ساعت:</strong>
-            <span id="resultDate"></span>
-        </p>
+<div class="card">
 
-    </div>
+<h2>
 
-    <div class="totalCard">
+نتیجه آزمون
 
-        <h3>نمره کل</h3>
+</h2>
 
-        <div id="totalScore" class="totalNumber">
-            0
-        </div>
+<p>
 
-        <div class="totalRange">
-            از 120
-        </div>
+<strong>
 
-        <div id="overallLevel" class="overallLevel">
-        </div>
+نام آزمون‌دهنده:
 
-    </div>
+</strong>
 
-    <div id="interpretation" class="interpretationBox">
-    </div>
+<span id="resultName">
 
-    <hr>
+</span>
 
-    <h3>
-        نتایج خرده‌مقیاس‌ها
-    </h3>
+</p>
 
-    <div id="subscaleResults">
+<p>
 
-    </div>
+<strong>
 
-    <div class="footerNote">
+تاریخ انجام آزمون:
 
-        این آزمون یک ابزار خودارزیابی است و
-        جایگزین ارزیابی تخصصی روان‌شناختی
-        توسط روان‌شناس نیست.
+</strong>
 
-    </div>
+<span id="resultDate">
 
-</section>
+</span>
+
+</p>
+
+<hr>
+
+	<p>
+
+<strong>
+
+نمره کل:
+
+</strong>
+
+<span id="totalScore">
+
+0
+
+</span>
+
+از 120
+
+</p>
+
+<hr>
+
+<h3>
+
+خرده‌مقیاس‌ها
+
+</h3>
+
+<table class="resultTable">
+
+<tr>
+<td>مسئولیت‌گریزی</td>
+<td id="score1">0</td>
+<td>از 20</td>
+</tr>
+
+<tr>
+<td>کمبود همدلی</td>
+<td id="score2">0</td>
+<td>از 20</td>
+</tr>
+
+<tr>
+<td>کنترل‌گری</td>
+<td id="score3">0</td>
+<td>از 20</td>
+</tr>
+
+<tr>
+<td>دستکاری هیجانی</td>
+<td id="score4">0</td>
+<td>از 20</td>
+</tr>
+
+<tr>
+<td>انتقادناپذیری</td>
+<td id="score5">0</td>
+<td>از 20</td>
+</tr>
+
+<tr>
+<td>مرزشکنی</td>
+<td id="score6">0</td>
+<td>از 20</td>
+</tr>
+
+</table>
+
+<hr>
+
+<h3>
+
+تفسیر نتیجه
+
+</h3>
+
+<div id="interpretation">
+
+</div>
+
+</div>
+
+</div>
 
 
-<!-- ====================== -->
-<!-- فرم مخفی ارسال به Google Apps Script -->
-<!-- ====================== -->
+
+<!-- ===========================
+فرم مخفی ذخیره اطلاعات
+=========================== -->
 
 <iframe
-    name="hiddenFrame"
-    id="hiddenFrame"
-    style="display:none;">
+
+name="hidden_iframe"
+
+id="hidden_iframe"
+
+style="display:none;">
+
 </iframe>
 
+
 <form
-    id="saveForm"
-    method="POST"
-    target="hiddenFrame"
-    action="https://script.google.com/macros/s/AKfycbwHcENx5RK2I-Sr1oIrJrvRG7fWYFbBvvAPmQKxz6QJwCn9QbwmM1SnSpL_x0zwghOI6w/exec"
-    style="display:none;">
 
-    <input type="hidden" name="name" id="f_name">
+id="saveForm"
 
-    <input type="hidden" name="date" id="f_date">
+method="POST"
 
-    <input type="hidden" name="time" id="f_time">
+target="hidden_iframe"
 
-    <input type="hidden" name="total" id="f_total">
+action="https://script.google.com/macros/s/AKfycbwHcENx5RK2I-Sr1oIrJrvRG7fWYFbBvvAPmQKxz6QJwCn9QbwmM1SnSpL_x0zwghOI6w/exec"
 
-    <input type="hidden" name="scale1" id="f_scale1">
+style="display:none;">
 
-    <input type="hidden" name="scale2" id="f_scale2">
+<input
 
-    <input type="hidden" name="scale3" id="f_scale3">
+type="hidden"
 
-    <input type="hidden" name="scale4" id="f_scale4">
+name="name"
 
-    <input type="hidden" name="scale5" id="f_scale5">
+id="f_name">
 
-    <input type="hidden" name="scale6" id="f_scale6">
+<input
+
+type="hidden"
+
+name="total"
+
+id="f_total">
+
+<input
+
+type="hidden"
+
+name="scale1"
+
+id="f_scale1">
+
+<input
+
+type="hidden"
+
+name="scale2"
+
+id="f_scale2">
+
+<input
+
+type="hidden"
+
+name="scale3"
+
+id="f_scale3">
+
+<input
+
+type="hidden"
+
+name="scale4"
+
+id="f_scale4">
+
+	<input
+type="hidden"
+name="scale5"
+id="f_scale5">
+
+<input
+type="hidden"
+name="scale6"
+id="f_scale6">
+
+<input
+type="hidden"
+name="date"
+id="f_date">
+
+<input
+type="hidden"
+name="time"
+id="f_time">
 
 </form>
+
 
 <!-- ===========================
 بارگذاری فایل‌های جاوااسکریپت
